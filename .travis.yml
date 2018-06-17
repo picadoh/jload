@@ -1,0 +1,9 @@
+os: linux
+language: go
+
+go:
+- tip # The latest version of Go.
+
+script:
+- make clean test release
+
