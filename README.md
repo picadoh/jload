@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/picadoh/jload.svg?branch=master)](https://travis-ci.org/picadoh/jload) 
+[![Build Status](https://travis-ci.org/picadoh/jload.svg?branch=master)](https://travis-ci.org/picadoh/jload) [![Download](https://api.bintray.com/packages/picadoh/jload/auto-upload/images/download.svg)](https://bintray.com/picadoh/jload/auto-upload/)
 
 JLoad provides the ability to load an agent dynamically into a running VM.
 
