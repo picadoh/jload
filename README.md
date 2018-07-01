@@ -32,27 +32,12 @@ To run from the [existing Docker image](https://hub.docker.com/r/picadoh/jload/)
 
     $ docker run --rm picadoh/jload <pid> <agent>
 
-# Cross-Platform Compilation
-
-A Makefile is available to make things easier. Just run the following command to generate binaries for multiple platforms.
-
-    $ make
-
-It will generate an output like the following:
-
-    GOOS=linux GOARCH=amd64 go build -o 'jload-linux-amd64'
-    GOOS=windows GOARCH=amd64 go build -o 'jload-windows-amd64.exe'
-    GOOS=darwin GOARCH=amd64 go build -o 'jload-darwin-amd64'
-
 # Installing
 
 If you have `go` available in your system, you may just:
 
     go get github.com/picadoh/jload
-    go build github.com/picadoh/jload
     go install github.com/picadoh/jload
-
-Packages for multiple platforms are still not available elsewere so for now it must be built from source.
 
 # Running
 

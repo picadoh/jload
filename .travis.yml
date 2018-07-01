@@ -1,9 +1,35 @@
 os: linux
+
 language: go
 
 go:
-- tip # The latest version of Go.
+  - tip
+
+env:
+  - PATH=/home/travis/gopath/bin:$PATH
+
+before_install:
+  - go get github.com/mitchellh/gox
+  - go get github.com/golang/lint/golint
+
+install:
+  - go get -t
+  - go build
 
 script:
-- make clean test release
+  - go vet ./...
+  - golint ./...
 
+after_success:
+  - gox -output "dist/{{.Dir}}_{{.OS}}_{{.Arch}}"
+  - cd dist ; for I in $(ls *) ; do md5sum $I > $I.md5 ; done ; cd -
+
+deploy:
+  skip_cleanup: true
+  file: .bintray.json
+  provider: bintray
+  user: picadoh
+  key:
+    secure: N+FCkRwowbOMyL+Reyumnh/4jmytT7rcI3+RvcZ/YOolDD5RHF/44q/4vIDOWJLzTTb5QVDdAUZ1z+6bo+xu0NeMR0Ax7AObiwFU+pd8s1A3NnxuLv89Du35zHcWPT+CA1W/OwGYQWI3Ahnw34LdjugMe9dVeObkgC3MNUGtV5AUEAGte5G6GOwESMuWATtokYyofUIzWxfIProZGO7BomWah6kRirqWMlzvVoEHE5flgjbNg0gAgoVmfDcPP55la9SH8daFgh7vSU98xXV+bl8e/sF0aEooI5YMDbvFerX63hAyhREiDE/JnCn+HfAkaNegdHIXnT+7MX9VuNncrqep+g+FyFDs4v/x6x7Entn5GVhJ7QCEnd4q4mw0sGnSATIvW4JVlUHmhPitr8Aos/r91pSHoGMP43zLRfnbVPNaHOMhr0XzZTdWgMXEZbiKF4g+Gag8o8ZhQ/xr0GejE94XI0tdR8mU98YNNm/rQMa2poA9/9WlHmRjkEHzRp8Ryg1T049LUqIwO7YeL/RyP5xTbHZQ6P2K2JW1aAAcoUwKyVuyfHwEyqaCgl2XjLEo4ffYj3hCQfmPGEtuPQc6IUC1rmD20xbd1y/IwWwxYDhUPkkbmHee/yIAKjgqovjD8SkCDy2z6m0pdrfqMS+BpwZFRYg5SaZZzhog+A4yPHg=
+  on:
+    tags: true

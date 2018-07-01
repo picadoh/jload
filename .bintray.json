@@ -1,0 +1,33 @@
+{
+  "package": {
+    "name": "auto-upload",
+    "repo": "jload",
+    "subject": "picadoh",
+    "desc": "Automatic publish",
+    "website_url": "https://www.hugopicado.com/",
+    "vcs_url": "https://github.com/picadoh/jload.git",
+    "licenses": [
+      "MIT"
+    ],
+    "labels": [
+      "golang",
+      "jvm",
+      "attach"
+    ],
+    "public_download_numbers": false,
+    "public_stats": false
+  },
+  "version": {
+    "name": "1.0.0",
+    "desc": "JLoad - Dynamically attaching agents into a running JVM",
+    "gpgSign": false
+  },
+  "files": [
+    {
+      "includePattern": "dist/(.*)",
+      "uploadPattern": "/1.0.0/$1"
+    }
+  ],
+  "publish": true
+}
+
