@@ -1,3 +1,4 @@
 jload
-.vscode
 jload-*
+*.jar
+*.class

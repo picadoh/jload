@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/picadoh/jload.svg?branch=master)](https://travis-ci.org/picadoh/jload) [![Download](https://api.bintray.com/packages/picadoh/jload/auto-upload/images/download.svg)](https://bintray.com/picadoh/jload/auto-upload/)
+[![CI](https://github.com/picadoh/jload/actions/workflows/ci.yml/badge.svg)](https://github.com/picadoh/jload/actions/workflows/ci.yml)
 
 JLoad provides the ability to load an agent dynamically into a running VM.
 
@@ -16,40 +16,49 @@ expose JMX MBeans in a certain format
 
 To build the binary on the current platform:
 
-    $ go build
+```shell
+go build
+```
 
 To run the tests:
 
-    $ go test
-
-# Docker
-
-To build a docker image:
-
-    $ docker build -t <image_name> .
-
-To run from the [existing Docker image](https://hub.docker.com/r/picadoh/jload/):
-
-    $ docker run --rm picadoh/jload <pid> <agent>
+```shell
+go test -v ./...
+```
 
 # Installing
 
 If you have `go` available in your system, you may just:
 
-    go get github.com/picadoh/jload
-    go install github.com/picadoh/jload
+```
+go install github.com/picadoh/jload@latest
+```
 
 # Running
 
-    jload <pid> <agent>
+```shell
+jload <pid> <agent>
+```
 
 *Example*
 
-    $ jload 1234 /path/to/my/myagent.jar
+```shell
+jload 1234 /path/to/my/myagent.jar
+```
 
 *Example with _pgrep_:*
 
-    $ pgrep -f .*myapp.* | xargs -I % ./jload % /path/to/my/myagent.jar
+```shell
+pgrep -f .*myapp.* | xargs -I % ./jload % /path/to/my/myagent.jar
+```
+
+*Or run the provided example:*
+
+Note: Requires Java 21+ and Go 1.23+.
+
+```shell
+./example/run.sh
+```
 
 # How to Contribute
 
